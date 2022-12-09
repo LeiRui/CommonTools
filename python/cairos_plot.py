@@ -13,7 +13,6 @@ def m4_mapping(r,r_min,r_max,canvas_length):
     # map position from r-space to canvas-space
     return (r-r_min)/(r_max-r_min)*canvas_length
 
-
 t=[]
 v=[]
 with open('test.csv', 'r') as read_obj:
@@ -39,14 +38,18 @@ print('raw point number=',len(v))
 # t=sorted_t
 # v=sorted_v
 
-WIDTH = 10
-HEIGHT = 10
+WIDTH = 1000
+HEIGHT = 800
 
 v_min=min(v)
 v_max=max(v)
 
 t_min=min(t)
 t_max_temp=max(t)
+# round t_max to comply with M4 paper usage. 
+# NOTE that the input M4 sampling data should also comply with the time intervals. That is, 
+# select M4(s1,'timeInterval'='(tqe-tqs)/w','displayWindowBegin'='tqs','displayWindowEnd'='tqe') from root.vehicle.d1
+# where tqe should also be treated like this.
 t_max=math.ceil((t_max_temp-t_min)/WIDTH)*WIDTH+t_min
 
 print('v_min=',v_min)
@@ -60,7 +63,7 @@ print('t_max=',t_max)
 
 s = cairo.ImageSurface(cairo.FORMAT_RGB24, WIDTH, HEIGHT)
 c = cairo.Context(s)
-# c.set_antialias(cairo.ANTIALIAS_NONE)
+c.set_antialias(cairo.ANTIALIAS_NONE) # turn off antialias function
 c.set_source_rgb(1,1,1) # background color
 c.paint()
 
@@ -108,6 +111,6 @@ c.stroke()
 # c.stroke()
 
 
-s.write_to_png('motivation-a.png') #save as png
+s.write_to_png('test.png') #save as png
 # s.show_page() #save as svg
 s.finish()
