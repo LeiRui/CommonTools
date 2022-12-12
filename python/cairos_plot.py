@@ -8,14 +8,13 @@ import numpy as np
 import csv
 import pandas as pd
 
-
 def m4_mapping(r,r_min,r_max,canvas_length):
-    # map position from r-space to canvas-space
+    # map position from r-space to cairos canvas-space
     return (r-r_min)/(r_max-r_min)*canvas_length
 
 t=[]
 v=[]
-with open('test.csv', 'r') as read_obj:
+with open('test-M4.csv', 'r') as read_obj:
     csv_reader = reader(read_obj)
     # This skips the first row of the CSV file.
     next(csv_reader)
@@ -61,18 +60,19 @@ print('t_max=',t_max)
 # s = cairo.PSSurface("motivation-a.eps", WIDTH, HEIGHT)
 # s.set_eps(True)
 
-s = cairo.ImageSurface(cairo.FORMAT_RGB24, WIDTH, HEIGHT)
+# s = cairo.ImageSurface(cairo.FORMAT_RGB24, WIDTH, HEIGHT)
+s = cairo.ImageSurface(cairo.FORMAT_A1, WIDTH, HEIGHT)
 c = cairo.Context(s)
-c.set_antialias(cairo.ANTIALIAS_NONE) # turn off antialias function
-c.set_source_rgb(1,1,1) # background color
-c.paint()
+c.set_antialias(cairo.ANTIALIAS_NONE)  # turn off antialias function
+# c.set_source_rgb(1,1,1) # background color
+# c.paint()
 
 # Transform to normal cartesian coordinate system
 m = cairo.Matrix(yy=-1, y0=HEIGHT)
 c.transform(m)
 
 # line properties
-c.set_source_rgb(0,0,0)
+# c.set_source_rgb(0,0,0)
 c.set_line_width(1)
 
 x0=m4_mapping(t[0],t_min,t_max,WIDTH)
@@ -111,6 +111,6 @@ c.stroke()
 # c.stroke()
 
 
-s.write_to_png('test.png') #save as png
+s.write_to_png('test-M4.png') #save as png
 # s.show_page() #save as svg
 s.finish()
