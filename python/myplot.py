@@ -94,9 +94,9 @@ def mse(imfil1,imfil2):
     img2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
     h, w = img1.shape
     diff = cv2.subtract(img1, img2)
-    cv2.imshow('image', diff)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    # cv2.imshow('image', diff)
+    # cv2.waitKey(0)
+    # cv2.destroyAllWindows()
     err = np.sum(diff**2)
     mse = err/(float(h*w))
     return mse
@@ -112,9 +112,12 @@ def match(imfil1,imfil2):
     return ssim(img1,img2)
 
 
+# usage: python myplot.py WIDTH HEIGHT rawData samplingData
+# example: python myplot.py 1000 800 test.csv test-M4.csv
+# output: pngs for rawData and samplingData, and the difference of the two pngs measured in SSIM and mse
 print('usage: python myplot.py WIDTH HEIGHT rawData samplingData')
 print('example: python myplot.py 1000 800 test.csv test-M4.csv')
-print('output: pngs for rawData and samplingData, and the difference of the two pngs measured in SSIM and mse')
+print('')
 print('---------------args---------------')
 print(sys.argv[0]) # prints python_script.py
 print('width=',sys.argv[1]) # prints var1
