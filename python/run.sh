@@ -17,7 +17,7 @@ bash ${exportCsvPath} -h 127.0.0.1 -p 6667 -u root -pw root -q "select ZT11529 f
 # aiming to validate whether M4_adapt_time_interval is the optimal
 for M4_time_interval in ${M4_adapt_time_interval}
 do
-    bash ${exportCsvPath} -h 127.0.0.1 -p 6667 -u root -pw root -q "select M4(ZT11529,'timeInterval'='${M4_time_interval}','displayWindowBegin'='${user_line_chart_tqs}','displayWindowEnd'='${M4_adapt_tqe}') from root.group_69.`1701`" -tf timestamp -td . -f ~/test-M4-${M4_time_interval}
+    bash ${exportCsvPath} -h 127.0.0.1 -p 6667 -u root -pw root -q "select M4(ZT11529,'timeInterval'='${M4_time_interval}','displayWindowBegin'='${user_line_chart_tqs}','displayWindowEnd'='${M4_adapt_tqe}') from root.group_69.*" -tf timestamp -td . -f ~/test-M4-${M4_time_interval}
     # plot and compare
     python3 ${myplotPath} 1000 800 ~/test-raw*.csv ~/test-M4-${M4_time_interval}*.csv
 done
