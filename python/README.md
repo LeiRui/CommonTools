@@ -1,28 +1,40 @@
-# 
-
 # Readme
 
 ## 1. prepare data
 
-Using the following IoTDB export-csv command to export csv data, which are already in this repository.
+Import test data into IoTDB:
 
--   raw data `test.csv`:
-
-```bash
-.\export-csv.bat -h 127.0.0.1 -p 6667 -u root -pw root -q "select ZT11529 from root.group_69.`1701`" -tf timestamp -td . -linesPerFile 300000
+```shell
+./import-csv.sh -h 127.0.0.1 -p 6667 -u root -pw root -f ~/test.csv
 ```
 
--   M4 data `test-M4.csv`:
+Then using the following IoTDB export-csv command to export csv data, which are already in this repository:
 
-```bash
-.\export-csv.bat -h 127.0.0.1 -p 6667 -u root -pw root -q "select M4(ZT11529,'timeInterval'='208653','displayWindowBegin'='1591717867194','displayWindowEnd'='1591926520194') from root.group_69.`1701`" -tf timestamp -td .
+```shell
+exportCsvPath=/data3/ruilei/iotdb/cli/target/iotdb-cli-1.0.1-SNAPSHOT/tools/export-csv.sh
+myplotPath=myplot.py
+
+# user parameters for line chart visualization
+user_line_chart_tqs=1591717867194
+user_line_chart_tqe=1591926520123
+user_line_chart_canvasPixelWidth=1000
+
+# prepare to rewrite the user-provided raw data range query as M4 query
+M4_adapt_time_interval=$(( (${user_line_chart_tqe}-${user_line_chart_tqs}+${user_line_chart_canvasPixelWidth} -1)/${user_line_chart_canvasPixelWidth} )) # ceil((user_line_chart_tqe-user_line_chart_tqs)/user_line_chart_canvasPixelWidth)
+M4_adapt_tqe=$(( ${user_line_chart_tqs}+${M4_adapt_time_interval}*${user_line_chart_canvasPixelWidth} ))
+
+# raw data query
+bash ${exportCsvPath} -h 127.0.0.1 -p 6667 -u root -pw root -q "select ZT11529 from root.group_69.* where time>=${user_line_chart_tqs} and time<${M4_adapt_tqe}" -tf timestamp -td . -linesPerFile 300000 -f ~/test-raw
+
+# M4 query
+M4_time_interval=${M4_adapt_time_interval}
+bash ${exportCsvPath} -h 127.0.0.1 -p 6667 -u root -pw root -q "select M4(ZT11529,'timeInterval'='${M4_time_interval}','displayWindowBegin'='${user_line_chart_tqs}','displayWindowEnd'='${M4_adapt_tqe}') from root.group_69.`1701`" -tf timestamp -td . -f ~/test-M4-${M4_time_interval}
+
+# plot and compare
+python ${myplotPath} 1000 800 ~/test-raw*.csv ~/test-M4-${M4_time_interval}*.csv
 ```
 
--   M4 data but using double sampling time interval (which is not the ideal usage of M4) `test-M4-doubleTimeInterval.csv`:
 
-```bash
-.\export-csv.bat -h 127.0.0.1 -p 6667 -u root -pw root -q "select M4(ZT11529,'timeInterval'='417306','displayWindowBegin'='1591717867194','displayWindowEnd'='1591926520194') from root.group_69.`1701`" -tf timestamp -td .
-```
 
 ## 2. using python.cairos to plot
 

@@ -1,4 +1,7 @@
 #!/usr/bin/python
+# usage: python myplot.py WIDTH HEIGHT rawData samplingData
+# example: python myplot.py 1000 800 test.csv test-M4.csv
+# output: pngs for rawData and samplingData, and the difference of the two pngs measured in SSIM and mse
 import math
 import cairo
 from csv import reader
@@ -9,13 +12,14 @@ import csv
 import pandas as pd
 import cv2
 from skimage.metrics import structural_similarity as ssim
+import sys
 
 def m4_mapping(r,r_min,r_max,canvas_length):
     # map position from r-space to cairos canvas-space
     return (r-r_min)/(r_max-r_min)*canvas_length
 
 def m4_plot(data,output,width,height):
-    print('--------------------------------')
+    print('------------m4_plot------------')
     print('data=',data)
     print('output=',output)
     print('WIDTH=',width)
@@ -31,7 +35,7 @@ def m4_plot(data,output,width,height):
 
     print('raw point number=',len(v))
 
-    # # sort and remove repetite
+    # # sort and remove repetition
     # zipped_lists = zip(t, v)
     # sorted_zipped_lists = sorted(zipped_lists)
     # sorted_t = [element for element,_ in sorted_zipped_lists]
@@ -108,57 +112,27 @@ def match(imfil1,imfil2):
     return ssim(img1,img2)
 
 
-WIDTH = 1000
-HEIGHT = 800
+print('usage: python myplot.py WIDTH HEIGHT rawData samplingData')
+print('example: python myplot.py 1000 800 test.csv test-M4.csv')
+print('output: pngs for rawData and samplingData, and the difference of the two pngs measured in SSIM and mse')
+print('---------------args---------------')
+print(sys.argv[0]) # prints python_script.py
+print('width=',sys.argv[1]) # prints var1
+print('height=',sys.argv[2]) # prints var2
+print('rawData=',sys.argv[3]) # prints var3
+print('samplingData=',sys.argv[4]) # prints var4
 
-data_raw='test.csv'
-output_raw='test.png'
-m4_plot(data_raw,output_raw,WIDTH,HEIGHT)
+WIDTH = int(sys.argv[1])
+HEIGHT = int(sys.argv[2])
+rawData = sys.argv[3]
+samplingData = sys.argv[4]
 
-data_M4='test-M4.csv'
-output_M4='test-M4.png'
-m4_plot(data_M4,output_M4,WIDTH,HEIGHT)
-print('the SSIM of raw and M4 is :', match(output_raw,output_M4))
-print('the mse of raw and M4 is :', mse(output_raw,output_M4))
+rawOutput=rawData+'.png'
+m4_plot(rawData,rawOutput,WIDTH,HEIGHT)
 
-data_M4_minus_one='test-M4-208652.csv'
-output_M4_minus_one='test-M4-208652.png'
-m4_plot(data_M4_minus_one,output_M4_minus_one,WIDTH,HEIGHT)
-print('the SSIM of raw and M4-minus-one is :', match(output_raw,output_M4_minus_one))
-print('the mse of raw and M4-minus-one is :', mse(output_raw,output_M4_minus_one))
+samplingOutput=samplingData+'.png'
+m4_plot(samplingData,samplingOutput,WIDTH,HEIGHT)
 
-data_M4_plus_one='test-M4-208654.csv'
-output_M4_plus_one='test-M4-208654.png'
-m4_plot(data_M4_plus_one,output_M4_plus_one,WIDTH,HEIGHT)
-print('the SSIM of raw and M4-plus-one is :', match(output_raw,output_M4_plus_one))
-print('the mse of raw and M4-plus-one is :', mse(output_raw,output_M4_plus_one))
-
-data_M4_plus_two='test-M4-208655.csv'
-output_M4_plus_two='test-M4-208655.png'
-m4_plot(data_M4_plus_two,output_M4_plus_two,WIDTH,HEIGHT)
-print('the SSIM of raw and M4-plus-two is :', match(output_raw,output_M4_plus_two))
-print('the mse of raw and M4-plus-two is :', mse(output_raw,output_M4_plus_two))
-
-data_M4_plus_three='test-M4-208656.csv'
-output_M4_plus_three='test-M4-208656.png'
-m4_plot(data_M4_plus_three,output_M4_plus_three,WIDTH,HEIGHT)
-print('the SSIM of raw and M4-plus-three is :', match(output_raw,output_M4_plus_three))
-print('the mse of raw and M4-plus-three is :', mse(output_raw,output_M4_plus_three))
-
-data_M4_plus_four='test-M4-208657.csv'
-output_M4_plus_four='test-M4-208657.png'
-m4_plot(data_M4_plus_four,output_M4_plus_four,WIDTH,HEIGHT)
-print('the SSIM of raw and M4-plus-four is :', match(output_raw,output_M4_plus_four))
-print('the mse of raw and M4-plus-four is :', mse(output_raw,output_M4_plus_four))
-
-data_M4_plus_five='test-M4-208658.csv'
-output_M4_plus_five='test-M4-208658.png'
-m4_plot(data_M4_plus_five,output_M4_plus_five,WIDTH,HEIGHT)
-print('the SSIM of raw and M4-plus-five is :', match(output_raw,output_M4_plus_five))
-print('the mse of raw and M4-plus-five is :', mse(output_raw,output_M4_plus_five))
-
-data_M4_doubleTimeInterval='test-M4-doubleTimeInterval.csv'
-output_M4_doubleTimeInterval='test-M4-doubleTimeInterval.png'
-m4_plot(data_M4_doubleTimeInterval,output_M4_doubleTimeInterval,WIDTH,HEIGHT)
-print('the SSIM of raw and M4-doubleTimeInterval is :', match(output_raw,output_M4_doubleTimeInterval))
-print('the mse of raw and M4-doubleTimeInterval is :', mse(output_raw,output_M4_doubleTimeInterval))
+print('---------------compare pngs---------------')
+print('the SSIM of raw and M4 is :', match(rawOutput,samplingOutput))
+print('the mse of raw and M4 is :', mse(rawOutput,samplingOutput))
