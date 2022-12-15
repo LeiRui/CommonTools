@@ -755,3 +755,15 @@ the mse of raw and M4 is : 0.00105125
 2.   In this experiment `run.sh`, when the sampling interval varies from `M4_TIME_INTERVAL-5` to `M4_TIME_INTERVAL+10`, the minumum mse happens when the sampling interval equals `M4_TIME_INTERVAL+1`, not `M4_TIME_INTERVAL`. In other words, `M4_TIME_INTERVAL` is not optimal?
 3.   Changing the line width of cairos from `1` to `0.5` or `2` will increase mse.
 4.   It is inconvenient to use customized python plot program for real users. Use Echart instead.
+
+
+
+## Pycairo bug疑似
+
+![image-20221215200256784](README.assets/image-20221215200256784.png)
+
+`python bug.py`
+
+x,y点都是在一个像素格子内的，但是bug.py画出来不止一个像素。
+
+不知道是什么原因。
