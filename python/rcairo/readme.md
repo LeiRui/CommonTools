@@ -46,9 +46,11 @@ https://www.cairographics.org/documentation/pycairo/3/reference/constants.html#c
 
 https://www.cairographics.org/documentation/pycairo/3/reference/constants.html#cairo-format
 
-猜测：RGB24 FORMAT+Cairo::ANTIALIAS_NONE 等效于 A1 FORMAT。
-换言之，A1 FORMAT的形成机制可能是和Cairo::ANTIALIAS_NONE一样的从灰度图设置一个阈值然后0-1化得到的。
 > Cairo::ANTIALIAS_NONE: Use a bilevel alpha mask
+> cairo.FORMAT_A1: each pixel is a 1-bit quantity holding an alpha value. Pixels are packed together into 32-bit quantities. The ordering of the bits matches the endianess of the platform. On a big-endian machine, the first pixel is in the uppermost bit, on a little-endian machine the first pixel is in the least-significant bit.
+
+猜测：RGB24 FORMAT+Cairo::ANTIALIAS_NONE等效于A1 FORMAT。
+换言之，A1 FORMAT的形成机制可能是和Cairo::ANTIALIAS_NONE一样的从灰度图设置一个阈值然后0-1化得到的。
 
 ![image-20221215233209924](readme.assets/image-20221215233209924.png)
 
