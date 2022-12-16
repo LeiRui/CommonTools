@@ -46,7 +46,8 @@ https://www.cairographics.org/documentation/pycairo/3/reference/constants.html#c
 
 https://www.cairographics.org/documentation/pycairo/3/reference/constants.html#cairo-format
 
-啊不是RGB24和A1区别的关系，而是开启了antialias模式c.set_antialias(Cairo::ANTIALIAS_NONE)的关系！
+猜测：RGB24 FORMAT+Cairo::ANTIALIAS_NONE 等效于 A1 FORMAT。
+换言之，A1 FORMAT的形成机制可能是和Cairo::ANTIALIAS_NONE一样的从灰度图设置一个阈值然后0-1化得到的。
 
 ![image-20221215233209924](readme.assets/image-20221215233209924.png)
 
