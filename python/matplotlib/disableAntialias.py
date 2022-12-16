@@ -71,7 +71,7 @@ def myplot(csvData, width, height, dpi):
     print('t_min=',t_min)
     print('t_max_temp=',t_max_temp)
     print('t_max=',t_max)
-    plt.plot(t,v,'k',linewidth=1,antialiased=False)
+    plt.plot(t,v,'k',linewidth=0.01,antialiased=False)
     plt.xlim(t_min, t_max)
     plt.ylim(v_min, v_max)
     plt.savefig(csvData+'.png')
