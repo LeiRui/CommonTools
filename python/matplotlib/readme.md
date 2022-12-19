@@ -16,11 +16,11 @@ antialiasing algorithm:
 
 - https://en.wikipedia.org/wiki/Xiaolin_Wu%27s_line_algorithm: "Bresenham's algorithm draws lines extremely quickly, but it does not perform anti-aliasing. In addition, it cannot handle any cases where the line endpoints do not lie exactly on integer points of the pixel grid. A naive approach to anti-aliasing the line would take an extremely long time. Wu's algorithm is comparatively fast, but is still slower than Bresenham's algorithm. The algorithm consists of drawing pairs of pixels straddling the line, each coloured according to its distance from the line. Pixels at the line ends are handled separately. Lines less than one pixel long are handled as a special case."
 
+![image](https://user-images.githubusercontent.com/33376433/208380080-be5752eb-77c7-42fc-accb-5fc0db58ca77.png)
+
 - Bresenham's line algorithm 布雷森汉姆直线算法 https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm: Bresenham's line algorithm is a line drawing algorithm that determines the points of an n-dimensional raster that should be selected in order to form a close approximation to a straight line between two points. While algorithms such as Wu's algorithm are also frequently used in modern computer graphics because they can support antialiasing, Bresenham's line algorithm is still important because of its speed and simplicity. The label "Bresenham" is used today for a family of algorithms extending or modifying Bresenham's original algorithm.
 
 ![image](https://user-images.githubusercontent.com/33376433/208380622-c685b9ae-5e04-4a39-9947-d18e60a53e01.png)
-
-![image](https://user-images.githubusercontent.com/33376433/208380080-be5752eb-77c7-42fc-accb-5fc0db58ca77.png)
 
 
 ![image](https://user-images.githubusercontent.com/33376433/208372659-7ad8d45c-de98-4b92-96d7-df02fb793234.png)
