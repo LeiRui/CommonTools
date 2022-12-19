@@ -1,4 +1,6 @@
 # matplotlib
+![image](https://user-images.githubusercontent.com/33376433/208372659-7ad8d45c-de98-4b92-96d7-df02fb793234.png)
+
 plt.plot(t,v,'k',linewidth=1,antialiased=True):
 
 ![image](https://user-images.githubusercontent.com/33376433/208371192-8f391968-824e-403a-9a8a-c01c64043cbd.png)
