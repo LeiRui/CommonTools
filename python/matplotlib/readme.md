@@ -9,6 +9,7 @@ antialiasing algorithm:
 - https://www.youtube.com/watch?v=9R_5Bp5xEV8: Multisample anti-aliasing (MSAA) 一个像素内上采样之后看采样点落在像素内的比例
 
 ![屏幕截图 2022-12-19 155530](https://user-images.githubusercontent.com/33376433/208375791-23713721-0c8f-45ad-88f1-f0a3bed844bb.png)
+![image](https://user-images.githubusercontent.com/33376433/208377204-0e1ea80a-105b-4967-829a-da52ac20afa5.png)
 ![image](https://user-images.githubusercontent.com/33376433/208376028-5acc319a-bcfe-42ce-9d26-03d532a80a89.png)
 ![image](https://user-images.githubusercontent.com/33376433/208376152-2431f507-f527-49cf-a354-7bbc1e96a73c.png)
 ![image](https://user-images.githubusercontent.com/33376433/208376216-b6525445-f5da-4dfe-b5e4-421545173e70.png)
