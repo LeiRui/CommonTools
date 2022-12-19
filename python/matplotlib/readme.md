@@ -29,6 +29,8 @@ plt.plot(t,v,'k',linewidth=1,antialiased=False)
 
 ![image](https://user-images.githubusercontent.com/33376433/208371272-960c8082-56c7-4784-ab15-e2ce71f3a081.png)
 
+https://www.includehelp.com/python/antialiasing-in-plotting.aspx
+
 ## how to disable antialias matplotlib
 
 昨天知道了cairos无法真的关掉antialias，最多是从灰度图用一个阈值二分化得到二值图像，antialias仍然对结果像素有影响作用。
