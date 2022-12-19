@@ -14,7 +14,7 @@ antialiasing algorithm:
 ![image](https://user-images.githubusercontent.com/33376433/208376152-2431f507-f527-49cf-a354-7bbc1e96a73c.png)
 ![image](https://user-images.githubusercontent.com/33376433/208376216-b6525445-f5da-4dfe-b5e4-421545173e70.png)
 
-
+- https://en.wikipedia.org/wiki/Xiaolin_Wu%27s_line_algorithm: 
 
 
 
