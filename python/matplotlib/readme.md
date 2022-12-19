@@ -6,7 +6,7 @@ plt.plot(t,v,'k',linewidth=1,antialiased=True):
 
 plt.plot(t,v,'k',linewidth=1,antialiased=False)
 
-![image](https://user-images.githubusercontent.com/33376433/208371066-f1cc2569-e786-43d5-bb82-0775d4393b4f.png)
+![image](https://user-images.githubusercontent.com/33376433/208371272-960c8082-56c7-4784-ab15-e2ce71f3a081.png)
 
 ## how to disable antialias matplotlib
 
