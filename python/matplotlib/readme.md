@@ -1,4 +1,12 @@
 # matplotlib
+plt.plot(t,v,'k',linewidth=1,antialiased=True):
+
+![image](https://user-images.githubusercontent.com/33376433/208371192-8f391968-824e-403a-9a8a-c01c64043cbd.png)
+
+
+plt.plot(t,v,'k',linewidth=1,antialiased=False)
+
+![image](https://user-images.githubusercontent.com/33376433/208371066-f1cc2569-e786-43d5-bb82-0775d4393b4f.png)
 
 ## how to disable antialias matplotlib
 
