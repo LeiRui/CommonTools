@@ -1,4 +1,31 @@
 # matplotlib
+https://www.reddit.com/r/algorithms/comments/268b49/algorithm_to_draw_antialiased_lines_of_a_certain/
+
+> [Algorithm to draw anti-aliased lines of a certain thickness]
+Hi folks,
+I'm trying to find a good algrithm for the drawing of anti-aliased lines. So far I have found the algorithm by Xiaolin Wu and the algorithm by Gupta Sprull.
+Is there a way to modify those algorithms to support lines with a thickness > 1 pixel or is there some algorithm which already supports a certain "pen" size?
+I appreciate your help.
+
+https://www.allegro.cc/forums/thread/589925
+
+> Wu lines are for lines that are one pixel thick. Nothing else. I will stitch using the trick you gave first (rect + wu lines) or use some hardware provided functions with Opengl or DirectX to do some antialiasing.
+
+Question: matplotlib是如何做宽线条的antialiasing的？是没有用line drawing algorithm而是当作平行四边形状去画？还是当作平行四边形的边边用line drawing算法内部完全在内的就在内？还是有什么专门的可以支持thick line的line drawing algorithm?
+
+https://en.wikipedia.org/wiki/Line_drawing_algorithm
+
+![image](https://user-images.githubusercontent.com/33376433/208381110-c25eb343-84c1-4f24-8d1b-389ebe706371.png)
+
+![image](https://user-images.githubusercontent.com/33376433/208381313-1b272462-ead9-4908-989e-cc6d9f302490.png)
+
+https://www.inf.ed.ac.uk/teaching/courses/cg/lectures/cg4_2012.pdf
+
+![image](https://user-images.githubusercontent.com/33376433/208381889-1fdeae74-d447-4097-b5aa-cd03ce439f33.png)
+
+![image](https://user-images.githubusercontent.com/33376433/208382130-77623600-a4bb-4f66-9033-2421caabef25.png)
+
+
 aliasing:
 - jaggies锯齿
 - moire云纹
