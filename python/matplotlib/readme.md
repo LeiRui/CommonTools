@@ -1,4 +1,6 @@
 # matplotlib
+图片像素检查网站：https://pixspy.com/
+
 https://www.reddit.com/r/algorithms/comments/268b49/algorithm_to_draw_antialiased_lines_of_a_certain/
 
 > [Algorithm to draw anti-aliased lines of a certain thickness]
